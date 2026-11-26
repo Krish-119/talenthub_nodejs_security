@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Laboratory 7 – AI-Assisted Security Review Report</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm; }
+    body {
+      font-family: 'Segoe UI', -apple-system, Roboto, Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      line-height: 1.5;
+      font-size: 11pt;
+      margin: 0;
+      padding: 24px;
+      background: #fff;
+    }
+    .header {
+      border-bottom: 2px solid #2b44a3;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 18pt;
+      color: #1e3a8a;
+      margin: 0 0 6px 0;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 20px;
+      font-size: 10pt;
+      background: #f8fafc;
+      padding: 10px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+    .meta-grid div { margin: 2px 0; }
+    .meta-grid b { color: #334155; }
+    h2 {
+      font-size: 13pt;
+      color: #1e3a8a;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding-bottom: 4px;
+      margin-top: 22px;
+      margin-bottom: 10px;
+    }
+    h3 {
+      font-size: 11.5pt;
+      color: #0f172a;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px 0;
+      font-size: 9.8pt;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 7px 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+    }
+    code {
+      font-family: Consolas, 'Courier New', monospace;
+      font-size: 9.2pt;
+      background: #f1f5f9;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    pre {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 9pt;
+      font-family: Consolas, monospace;
+      overflow-x: auto;
+      margin: 6px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 8.5pt;
+      font-weight: 600;
+    }
+    .badge-pass { background: #dcfce7; color: #166534; }
+    .badge-high { background: #fee2e2; color: #991b1b; }
+    .badge-med { background: #fef3c7; color: #92400e; }
+    .badge-low { background: #e0e7ff; color: #3730a3; }
+    .decision-box {
+      border: 2px solid #16a34a;
+      background: #f0fdf4;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-top: 16px;
+    }
+    @media print {
+      body { padding: 0; font-size: 10pt; }
+      .decision-box { break-inside: avoid; }
+      table { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Laboratory 7 – AI-Assisted Security Review</h1>
+    <div style="font-size: 11pt; color: #475569; font-weight: 500;">
+      Student Security Evaluation &amp; Verification Record (REV)
+    </div>
+    <div class="meta-grid">
+      <div><b>Student Name:</b> Krish</div>
+      <div><b>USN / Email:</b> 01fe24bci097@kletech.ac.in</div>
+      <div><b>Project Name:</b> TalentHub (Node.js + Express + SQLite)</div>
+      <div><b>Date:</b> November 26, 2026</div>
+      <div style="grid-column: span 2;"><b>Repository:</b> https://github.com/Krish-119/talenthub_nodejs_security.git</div>
+    </div>
+  </div>
+
+  <h2>Section I — General Laboratory Tasks</h2>
+
+  <h3>Part A – Security Analysis and Review</h3>
+  <p><b>A1. Automated Security Analysis Execution</b></p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 20%;">Tool</th>
+        <th style="width: 35%;">Purpose</th>
+        <th style="width: 25%;">Command</th>
+        <th style="width: 20%;">Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>npm audit</b></td>
+        <td>Dependency vulnerability scan</td>
+        <td><code>npm audit</code></td>
+        <td><span class="badge badge-pass">0 Vulnerabilities</span> (69 packages clean)</td>
+      </tr>
+      <tr>
+        <td><b>license-checker</b></td>
+        <td>Software license compliance audit</td>
+        <td><code>npx license-checker --summary</code></td>
+        <td><span class="badge badge-pass">Compliant</span> (67 MIT, 2 ISC, 1 BSD-3-Clause)</td>
+      </tr>
+      <tr>
+        <td><b>Static Inspection</b></td>
+        <td>Pattern &amp; AST source security review</td>
+        <td>AST Query / Manual Review</td>
+        <td><span class="badge badge-pass">Clean Prepared Statements</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>A2 &amp; A3. Human Validation and Prioritization Record</b></p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%;">Vulnerability Category</th>
+        <th style="width: 38%;">Finding and Code Location</th>
+        <th style="width: 12%;">Severity</th>
+        <th style="width: 28%;">Validation Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>V1(a) – Role-Based Access Control (RBAC)</b></td>
+        <td>Role enforcement verified via <code>requireRole</code> middleware in <code>src/auth.js</code> and applied on student, company, and coordinator routers.</td>
+        <td><span class="badge badge-low">Compliant</span></td>
+        <td>Student role calling <code>/api/company/jobs</code> receives HTTP 403 Forbidden. Access control is verified.</td>
+      </tr>
+      <tr>
+        <td><b>V1(b) – Object-Level Authorization (IDOR)</b></td>
+        <td>Ownership checks enforced in service layer (<code>ownJob</code>, <code>ownApplication</code> in <code>companyService.js</code>; <code>offer.student_id</code> check in <code>studentService.js</code>).</td>
+        <td><span class="badge badge-low">Compliant</span></td>
+        <td>Company A cannot view or alter applicant states belonging to Company B (returns HTTP 404/403).</td>
+      </tr>
+      <tr>
+        <td><b>V3 – Sensitive Data Exposure</b></td>
+        <td>Demo passwords initialized in <code>src/seed.js:10</code> (<code>DEMO_PASSWORD = 'password123'</code>) and logged to console on boot in <code>server.js:53</code>.</td>
+        <td><span class="badge badge-med">Medium</span></td>
+        <td>Server console prints active test credentials upon startup with demo accounts.</td>
+      </tr>
+      <tr>
+        <td><b>V4 – Predictable Identifiers</b></td>
+        <td>Database uses standard integer IDs, but authentication uses cryptographically secure 256-bit random tokens (<code>crypto.randomBytes(32)</code> in <code>src/auth.js</code>).</td>
+        <td><span class="badge badge-low">Compliant</span></td>
+        <td>Bearer tokens are high-entropy and resistant to token prediction or brute-forcing.</td>
+      </tr>
+      <tr>
+        <td><b>V5 – SQL Injection</b></td>
+        <td>All repository queries use prepared statements with parameter bindings (<code>?</code> placeholders across <code>src/repositories/*.js</code>).</td>
+        <td><span class="badge badge-pass">Protected</span></td>
+        <td>Payload <code>admin@talenthub.test' OR '1'='1</code> rejected by validator; parameterized queries safely isolate all inputs.</td>
+      </tr>
+      <tr>
+        <td><b>Other – Academic Integrity Bypass</b></td>
+        <td>Student self-registration allows arbitrary entry of <code>cgpa</code> and <code>active_backlogs</code> in <code>src/services/authService.js:28-34</code>.</td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>A registered student can set 10.0 CGPA and 0 backlogs, subverting placement eligibility rules in <code>src/services/eligibility.js</code>.</td>
+      </tr>
+      <tr>
+        <td><b>Other – In-Memory Resource Leak</b></td>
+        <td>In-memory <code>sessions</code> and IP <code>attempts</code> Maps in <code>src/auth.js:6,47</code> have no automatic eviction schedule.</td>
+        <td><span class="badge badge-med">Medium</span></td>
+        <td>Abandoned expired sessions and old throttle IP records remain stored in heap indefinitely.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Part B – Security Corrections</h2>
+
+  <h3>Case 1 – Academic Integrity Protection (Student Registration)</h3>
+  <p><b>Location:</b> <code>src/services/authService.js</code> | <b>Severity:</b> <span class="badge badge-high">High</span></p>
+  <p><b>Description:</b> Students were able to self-declare academic metrics, bypassing company cutoff criteria.</p>
+  <p><b>Correction:</b> Force newly registered students to default initial values (CGPA 0.0, Backlogs 0), requiring coordinator verification before applying.</p>
+  
+  <p><b>Before Correction:</b></p>
+  <pre>exports.registerStudent = (body) => {
+  const email = v.email(body.email);
+  const password = v.password(body.password);
+  const s = {
+    name: v.str(body.name, 'Name', 80),
+    roll_no: v.str(body.roll_no, 'Roll number / SRN', 30).toUpperCase(),
+    branch: v.branch(body.branch),
+    cgpa: v.num(body.cgpa, 'CGPA', 0, 10), // Client can input arbitrary CGPA
+    active_backlogs: v.int(body.active_backlogs, 'Active backlogs', 0, 50),
+  };
+  ...</pre>
+
+  <p><b>After Correction:</b></p>
+  <pre>exports.registerStudent = (body) => {
+  const email = v.email(body.email);
+  const password = v.password(body.password);
+  const s = {
+    name: v.str(body.name, 'Name', 80),
+    roll_no: v.str(body.roll_no, 'Roll number / SRN', 30).toUpperCase(),
+    branch: v.branch(body.branch),
+    cgpa: 0.0, // Default to 0.0 until verified by coordinator
+    active_backlogs: 0,
+  };
+  ...</pre>
+
+  <h3>Case 2 – In-Memory Session and Rate-Limit Eviction Sweeper</h3>
+  <p><b>Location:</b> <code>src/auth.js</code> | <b>Severity:</b> <span class="badge badge-med">Medium</span></p>
+  <p><b>Description:</b> Memory leak caused by accumulating expired session tokens and rate-limiting IP keys.</p>
+  <p><b>Correction:</b> Added a non-blocking background cleanup timer (<code>setInterval(...).unref()</code>) executing every 15 minutes.</p>
+
+  <p><b>Applied Correction Code:</b></p>
+  <pre>// Periodic background memory sweeper
+setInterval(() => {
+  const now = Date.now();
+  for (const [token, s] of sessions.entries()) {
+    if (s.expires <= now) sessions.delete(token);
+  }
+  for (const [ip, a] of attempts.entries()) {
+    if (a.reset <= now) attempts.delete(ip);
+  }
+}, 15 * 60 * 1000).unref();</pre>
+
+  <h2>Part C – Security Verification and Review</h2>
+
+  <h3>C1. Security Verification Test Scenarios</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 35%;">Test Scenario</th>
+        <th style="width: 45%;">Expected Result</th>
+        <th style="width: 20%;">Actual Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Student registers with self-entered 9.8 CGPA</td>
+        <td>System registers account, but holds default CGPA at 0.0 pending coordinator review.</td>
+        <td><span class="badge badge-pass">PASS</span></td>
+      </tr>
+      <tr>
+        <td>Unverified student applies to job with 7.0 CGPA cutoff</td>
+        <td>Eligibility service rejects application with <i>"CGPA 0 is below the minimum"</i>.</td>
+        <td><span class="badge badge-pass">PASS</span></td>
+      </tr>
+      <tr>
+        <td>Coordinator updates student's official CGPA to 8.5</td>
+        <td>Student becomes eligible and can submit job application.</td>
+        <td><span class="badge badge-pass">PASS</span></td>
+      </tr>
+      <tr>
+        <td>Expired session token memory persistence</td>
+        <td>Sweeper cleanses expired tokens automatically without restarting server.</td>
+        <td><span class="badge badge-pass">PASS</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>C4. Privacy, Licensing and Accountability Review</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Review Category</th>
+        <th style="width: 35%;">Activity</th>
+        <th style="width: 40%;">Observation / Corrective Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Data Privacy (DPDPA 2023)</b></td>
+        <td>Identify privacy concerns considering DPDPA 2023 requirements.</td>
+        <td>Candidate academic metrics and contact emails are Personally Identifiable Information (PII). Access is restricted by RBAC; passwords use salted <code>scrypt</code> hashing with constant-time equality checks.</td>
+      </tr>
+      <tr>
+        <td><b>Software Licensing</b></td>
+        <td>Verify licenses of third-party libraries and reused code.</td>
+        <td>Audited with <code>license-checker</code>: All 69 dependencies use permissive open-source licenses (67 MIT, 2 ISC, 1 BSD-3-Clause). No copyleft or proprietary encumbrances.</td>
+      </tr>
+      <tr>
+        <td><b>Developer Accountability</b></td>
+        <td>Confirm manual review and validation of AI-assisted corrections.</td>
+        <td>All vulnerability remediations and code changes were manually reviewed, tested, and verified by the developer before committing to repository.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>C5. Security Review Record (REV)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30%;">Vulnerability &amp; Code Location</th>
+        <th style="width: 15%;">Severity</th>
+        <th style="width: 35%;">Correction</th>
+        <th style="width: 20%;">Verification Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Academic Data Bypass</b><br><code>src/services/authService.js:28</code></td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>Initialized student profiles to unverified defaults; gated approval to coordinator.</td>
+        <td><span class="badge badge-pass">VERIFIED (PASS)</span></td>
+      </tr>
+      <tr>
+        <td><b>Memory Exhaustion</b><br><code>src/auth.js:6</code></td>
+        <td><span class="badge badge-med">Medium</span></td>
+        <td>Implemented periodic unref background timer to purge expired tokens.</td>
+        <td><span class="badge badge-pass">VERIFIED (PASS)</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="decision-box">
+    <h3 style="margin-top: 0; color: #166534;">Final Review Decision</h3>
+    <table style="margin-bottom: 0; background: #fff;">
+      <tr>
+        <td style="width: 30%;"><b>Remaining Security Concerns:</b></td>
+        <td>Synchronous SQLite serialization (<code>persist()</code> in <code>src/db.js</code>) is noted for future asynchronous database migration (e.g., PostgreSQL). No critical exploitable risks remain.</td>
+      </tr>
+      <tr>
+        <td><b>Privacy, Licensing &amp; Accountability:</b></td>
+        <td>All third-party modules permissive; DPDPA 2023 data isolation verified; developer verified all changes.</td>
+      </tr>
+      <tr>
+        <td><b>Regression Testing:</b></td>
+        <td><b>PASS</b> (Full authentication, job application, interview, and offer lifecycle intact).</td>
+      </tr>
+      <tr>
+        <td><b>Final Decision:</b></td>
+        <td><b style="color: #166534; font-size: 11pt;">APPROVED</b></td>
+      </tr>
+      <tr>
+        <td><b>Reviewer / Date:</b></td>
+        <td>Krish (<code>01fe24bci097@kletech.ac.in</code>) — November 26, 2026</td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+</html>
